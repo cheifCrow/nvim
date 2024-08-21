@@ -15,6 +15,7 @@ require("lazy").setup({
     "williamboman/mason.nvim",
     "williamboman/mason-lspconfig.nvim",
     "neovim/nvim-lspconfig",
+    "nvim-tree/nvim-tree.lua",
     "nvim-tree/nvim-web-devicons",
     {
       "folke/trouble.nvim",
@@ -64,3 +65,5 @@ require("lazy").setup({
     {'hrsh7th/nvim-cmp'},
     {'L3MON4D3/LuaSnip'},
 })
+
+require("nvim-tree").setup()
