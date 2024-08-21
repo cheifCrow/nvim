@@ -20,6 +20,10 @@ require('mason-lspconfig').setup({
 
 local lspconfig = require('lspconfig')
 
+lspconfig.java_language_server.setup({
+    on_attach = on_attach,
+})
+
 lspconfig.pylsp.setup({
     on_attach = on_attach,
 })
@@ -53,4 +57,8 @@ lspconfig.tsserver.setup({})
 -- source: https://rust-analyzer.github.io/manual.html#nvim-lsp
 lspconfig.rust_analyzer.setup({
 	on_attach = on_attach,
+})
+
+vim.diagnostic.config({
+    virtual_text = false,
 })
