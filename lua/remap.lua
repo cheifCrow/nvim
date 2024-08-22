@@ -21,6 +21,15 @@ vim.keymap.set('n', '<leader>r', function ()
     api.tree.change_root(cwd)
 end)
 
+-- show diagnostic message when cursor hovering
+vim.api.nvim_create_autocmd({ "CursorHold", "CursorHoldI" }, {
+  group = vim.api.nvim_create_augroup("float_diagnostic", { clear = true }),
+  callback = function ()
+    vim.diagnostic.open_float(nil, {focus=false})
+  end
+})
+
+-- toggle stage/unstage for git files in nvim-tree
 local git_add = function()
   local node = api.tree.get_node_under_cursor()
   local gs = node.git_status.file

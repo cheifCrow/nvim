@@ -18,6 +18,18 @@ require('mason-lspconfig').setup({
     ensure_installed = { 'pylsp', 'lua_ls', 'rust_analyzer', 'tsserver' },
 })
 
+vim.diagnostic.config({
+    virtual_text = false,
+    signs = true,
+    underline = true,
+})
+
+local signs = { Error = "󰅚 ", Warn = "󰀪 ", Hint = "󰌶 ", Info = " " }
+for type, icon in pairs(signs) do
+  local hl = "DiagnosticSign" .. type
+  vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = hl })
+end
+
 local lspconfig = require('lspconfig')
 
 lspconfig.java_language_server.setup({
@@ -59,6 +71,7 @@ lspconfig.rust_analyzer.setup({
 	on_attach = on_attach,
 })
 
-vim.diagnostic.config({
-    virtual_text = false,
+
+lspconfig.clangd.setup({
+    on_attach = on_attach,
 })
